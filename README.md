@@ -21,10 +21,10 @@ The polished assembly will be aligned to the reference genome using Minimap2 (v2
 ## Visualization
 Genome alignments and identified variants will be visualized using IGV (Integrative Genomics Viewer) (v2.18) (Robinson et al., 2023)
 # References
-Cock, P. J. A., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F. and Wilczynski, B. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics, 25(11), 1422.
-Cosma, B.-M., Shirali Hossein Zade, R., Jordan, E. N., van Lent, P., Peng, C., Pillay, S. and Abeel, T. (2023). Evaluating long-read de novo assembly tools for eukaryotic genomes: insights and considerations. GigaScience, 12, giad100.
-Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O., Whitwham, A., Keane, T., McCarthy, S. A. and Davies, R. M. (2021). Twelve years of SAMtools and BCFtools. GigaScience 10, giab008. In.
-De Coster, W. and Rademakers, R. (2023). NanoPack2: population-scale evaluation of long-read sequencing data. Bioinformatics, 39(5), btad311.
+1.Cock, P. J. A., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F. and Wilczynski, B. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics, 25(11), 1422.
+2. Cosma, B.-M., Shirali Hossein Zade, R., Jordan, E. N., van Lent, P., Peng, C., Pillay, S. and Abeel, T. (2023). Evaluating long-read de novo assembly tools for eukaryotic genomes: insights and considerations. GigaScience, 12, giad100.
+3. Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O., Whitwham, A., Keane, T., McCarthy, S. A. and Davies, R. M. (2021). Twelve years of SAMtools and BCFtools. GigaScience 10, giab008. In.
+4. De Coster, W. and Rademakers, R. (2023). NanoPack2: population-scale evaluation of long-read sequencing data. Bioinformatics, 39(5), btad311.
 Jain, C., Rhie, A., Zhang, H., Chu, C., Walenz, B. P., Koren, S. and Phillippy, A. M. (2020). Weighted minimizer sampling improves long read mapping. Bioinformatics, 36(Supplement_1), i111-i118.
 Kumar, M. S., Krishna, M. B., Soman, K. P., Stanley, J., Pourmand, N., Suravajhala, P. and Babu, T. G. S. (2025). Benchmarking long-read assembly tools and preprocessing strategies for bacterial genomes: A case study on E. coli DH5α. Biotechnology Reports, e00931.
 Marx, V. (2023). Method of the year: long-read sequencing. Nature methods, 20(1), 6-11.
