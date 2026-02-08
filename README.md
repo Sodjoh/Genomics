@@ -73,6 +73,9 @@ The assembly was aligned against the reference genome Salmonella enterica serova
 Figure 3: Visualization of variants in IGV. The top track shows the variant calls (colored bars) relative to the reference genome. The bottom track displays the alignment of the assembly (or reads), grey tracks represent the de novo assembly contigs mapped to the LT2 reference genome.
 
 To assess the functional potential of genomic changes, structural variants (SVs) identified by SVIM-asm were classified by type and genomic context (Figure 4). The analysis revealed a total of [approx 27] high-confidence structural events. Insertions (INS) were the most prevalent variant type (n=15), followed by Deletions (DEL) (n=10) and rare Breakends (BND) (n=2). Although fewer in number, intergenic structural variants may still influence transcriptional regulation and genome architecture. Structural variants are known to play major roles in bacterial genome evolution by modifying gene structure, expression, and phenotypic diversity, highlighting their importance in shaping strain-specific adaptations in Salmonella enterica (Chiang et al., 2017; Periwal & Scaria, 2015).
+![image_alt](https://github.com/Sodjoh/Genomics/blob/main/SV_impact_barplot.png)
+Figure 4: Distribution of structural variants by type and genomic impact. 
+
 
 # References
 Cock, P. J. A., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F. and Wilczynski, B. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics, 25(11), 1422.
