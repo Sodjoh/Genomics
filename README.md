@@ -76,8 +76,17 @@ To assess the functional potential of genomic changes, structural variants (SVs)
 ![image_alt](https://github.com/Sodjoh/Genomics/blob/main/SV_impact_barplot.png)
 Figure 4: Distribution of structural variants by type and genomic impact. 
 
+![image_alt](https://github.com/Sodjoh/Genomics/blob/c1a3034a70ab99297e6b134836f2a40c1f3f366a/Screenshot%202026-02-07%20231916.png)
+In table 2, a 256 bp deletion was found in dgoR, a transcriptional repressor for galactonate metabolism. In Salmonella, the inactivation of dgoR leads to the constitutive expression of the galactose pathway. This "metabolic erosion" is a known adaptation strategy in host-adapted strains, where the derepression of specific carbon pathways confers a competitive advantage in the nutrient-limited environment of the macrophage (Han et al., 2025; Wang et al., 2021). The dataset shows consistent deletions of tnpA genes each around 711 bp in size. The precise excision of these Insertion Sequences (IS elements) suggests a process of genome stabilization. By shedding active transposases, the isolate may be reducing the risk of deleterious rearrangements, a phenomenon described as "genome degradation" which often accompanies long-term host adaptation(Byl & Kropinski, 2000) 
+
+#Conclusion
+To conclude, this study verifies that the sequenced genome represents a unique lineage of Salmonella enterica, distinguished by substantial genomic expansions compared to the reference. This analysis emphasize that de novo, reference-independent assembly is vital for mapping the "accessory genome," which often drives the evolution and pathogenicity of bacterial clusters.
 
 # References
+Byl, C. V., & Kropinski, A. M. (2000). Sequence of the genome of Salmonella bacteriophage P22. Journal of bacteriology, 182(22), 6472-6481. 
+
+Chiang, C., Scott, A. J., Davis, J. R., Tsang, E. K., Li, X., Kim, Y., Hadzic, T., Damani, F. N., Ganel, L., Montgomery, S. B., Battle, A., Conrad, D. F., & Hall, I. M. (2017). The impact of structural variation on human gene expression. Nat Genet, 49(5), 692-699.
+
 Cock, P. J. A., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F. and Wilczynski, B. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics, 25(11), 1422.
 
 Cosma, B.-M., Shirali Hossein Zade, R., Jordan, E. N., van Lent, P., Peng, C., Pillay, S. and Abeel, T. (2023). Evaluating long-read de novo assembly tools for eukaryotic genomes: insights and considerations. GigaScience, 12, giad100.
@@ -86,11 +95,19 @@ Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O.
 
 De Coster, W. and Rademakers, R. (2023). NanoPack2: population-scale evaluation of long-read sequencing data. Bioinformatics, 39(5), btad311.
 
+Han, M., Duan, Y., & Schikora, A. (2025). Salmonella enterica employs metabolic adaptation to plant environments. Frontiers in Plant Science, 16, 1636330. 
+
+Jain, M., Koren, S., Miga, K. H., Quick, J., Rand, A. C., Sasani, T. A., Tyson, J. R., Beggs, A. D., Dilthey, A. T., & Fiddes, I. T. (2018). Nanopore sequencing and assembly of a human genome with ultra-long reads. Nature biotechnology, 36(4), 338-345. 
+
 Jain, C., Rhie, A., Zhang, H., Chu, C., Walenz, B. P., Koren, S. and Phillippy, A. M. (2020). Weighted minimizer sampling improves long read mapping. Bioinformatics, 36(Supplement_1), i111-i118.
 
 Kumar, M. S., Krishna, M. B., Soman, K. P., Stanley, J., Pourmand, N., Suravajhala, P. and Babu, T. G. S. (2025). Benchmarking long-read assembly tools and preprocessing strategies for bacterial genomes: A case study on E. coli DH5α. Biotechnology Reports, e00931.
 
 Marx, V. (2023). Method of the year: long-read sequencing. Nature methods, 20(1), 6-11.
+
+McClelland, M., Sanderson, K. E., Spieth, J., Clifton, S. W., Latreille, P., Courtney, L., Porwollik, S., Ali, J., Dante, M., & Du, F. (2001). Complete genome sequence of Salmonella enterica serovar Typhimurium LT2. Nature, 413(6858), 852-856. 
+
+Periwal, V., & Scaria, V. (2015). Insights into structural variations and genome rearrangements in prokaryotic genomes. Bioinformatics, 31(1), 1-9
 
 Pightling, A. W., Pettengill, J. B., Luo, Y., Baugher, J. D., Rand, H. and Strain, E. (2018). Interpreting whole-genome sequence analyses of foodborne bacteria for regulatory applications and outbreak investigations. Frontiers in microbiology, 9, 1482.
 
@@ -100,6 +117,12 @@ Senol Cali, D., Kim, J. S., Ghose, S., Alkan, C. and Mutlu, O. (2019). Nanopore 
 
 Sereika, M., Kirkegaard, R. H., Karst, S. M., Michaelsen, T. Y., Sørensen, E. A., Wollenberg, R. D. and Albertsen, M. (2022). Oxford Nanopore R10. 4 long-read sequencing enables the generation of near-finished bacterial genomes from pure cultures and metagenomes without short-read or reference polishing. Nature methods, 19(7), 823-826.
 
+Wang, Y., Wu, C., Gao, J., Du, X., Chen, X., & Zhang, M. (2021). Host metabolic shift during systemic Salmonella infection revealed by comparative proteomics. Emerging microbes & infections, 10(1), 1849-1861. 
+
 Whibley, A., Kelley, J. L. and Narum, S. R. (2021). The changing face of genome assemblies: Guidance on achieving high‐quality reference genomes. In: Wiley Online Library.
+
+Wick, R. R., & Holt, K. E. (2022). Polypolish: short-read polishing of long-read bacterial genome assemblies. PLoS computational biology, 18(1), e1009802. 
+
+Wick, R. R., Judd, L. M., Gorrie, C. L., & Holt, K. E. (2017). Unicycler: resolving bacterial genome assemblies from short and long sequencing reads. PLoS computational biology, 13(6), e1005595. 
 
 Wick, R. R. and Holt, K. E. (2021). Benchmarking of long-read assemblers for prokaryote whole genome sequencing. F1000Research, 8, 2138.
