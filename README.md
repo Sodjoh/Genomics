@@ -64,6 +64,7 @@ Table 1: Assembly metrics using QUAST
 | L50 |	1 |
 
 ![image_alt](https://github.com/Sodjoh/Genomics/blob/main/graph.jpg)
+
 Figure 2: The large component represents the Salmonella chromosome, where a central repeat node (green) bridges two unique regions (yellow and pink). The smaller, detached circular component (bottom left) represents a plasmid.
 
 
