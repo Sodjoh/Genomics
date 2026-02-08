@@ -12,12 +12,14 @@ Generating accurate de novo assemblies from long-read platforms requires appropr
 # Methodology
 ## Data preprocessing and Quality Assessment
 Raw long-read sequencing data for Salmonella enterica was downloaded from NCBI database with accession number SRR32410565.1 The data was extracted using SRA Toolkit (v2.9.6) which converted SRA format into FASTQ sequences. Initial quality assessment was conducted using NanoPlot (v1.4.2) to characterize read length distribution and quality score metrics (De Coster et al., 2023). In order to ensure quality, the raw reads were subjected to filtering using Filtlong (v0.3.1). So reads shorter than 1,000 base pairs (bp) or with a mean quality score below Q10 were discarded to remove truncated fragments and low-accuracy sequences that could introduce graph ambiguities. Afterwards NanoPlot was rerun again on the filtered reads to confirm the differences and validate the removal of noise.
+```bash
 fasterq-dump SRR32410565.1 --threads 4
 NanoPlot --fastq SRR32410565.1.fastq --outdir qc_check
 Filtering
 filtlong --min_length 1000 --min_mean_q 10 SRR32410565.1.fastq > filtered_reads.fastq
 Nanoplot of filtered reads
 NanoPlot --fastq filtered_reads.fastq --outdir qc_filtered
+```
 ## Genome Assembly
 The filtered reads were assembled using Flye (v2.9.6). The pipeline was executed in --nano-hq mode to leverage the improved accuracy profile of R10 pore chemistry. An expected genome size of 4.8 Mb was specified to guide the coverage estimation and graph resolution parameters (Wick & Holt, 2022).
 flye --nano-hq filtered_reads.fastq --out-dir flye_assembly --genome-size 4.8m --threads 4
