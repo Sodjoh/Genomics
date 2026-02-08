@@ -22,17 +22,32 @@ NanoPlot --fastq filtered_reads.fastq --outdir qc_filtered
 ```
 ## Genome Assembly
 The filtered reads were assembled using Flye (v2.9.6). The pipeline was executed in --nano-hq mode to leverage the improved accuracy profile of R10 pore chemistry. An expected genome size of 4.8 Mb was specified to guide the coverage estimation and graph resolution parameters (Wick & Holt, 2022).
+```bash
 flye --nano-hq filtered_reads.fastq --out-dir flye_assembly --genome-size 4.8m --threads 4
+```
 ## Assembly Polishing
 Following assembly, the draft genome was polished using Medaka a neural-network–based polishing tool designed specifically for Oxford Nanopore data with the model to correct homopolymer errors and improve base-level accuracy (Sereika et al., 2022). 
 ## Genome Alignment and Variant Calling
 The reference genome was downloaded from NCBI and thereafter aligned with the polished assembly using Minimap2 (v 2.24) (Jain et al., 2020). The resulting alignment was sorted and indexed using Samtools (v1.16) for downstream analysis. Structural variants (SVs), including insertions, deletions, and inversions, were detected using SVIM-asm (v1.0.3) in haploid mode.
+```bash
 minimap2 -ax asm5 reference.fasta medaka_out/consensus.fasta > alignment_polished.sam
 samtools view -bS alignment_polished.sam | samtools sort -o alignment_polished_sorted.bam samtools index alignment_polished_sorted.bam
 svim-asm haploid/home/sodiq-dada alignment_polished_sorted.bam reference.fasta
-
+```
 ## Visualization
-Genome alignments and identified variants will be visualized using IGV (Integrative Genomics Viewer) (v2.18) (Robinson et al., 2023)
+Genome alignments and identified variants were visualized using IGV (Integrative Genomics Viewer) (v2.18) (Robinson et al., 2023)
+
+# Results and Discussion
+## Data Quality and Filtering 
+The raw read “SRR32410565” before subjecting it to filtering had 391,551 reads. Inspection via NanoPlot revealed a variable length distribution typical of raw long-read output. While Nanopore sequencing offers the distinct advantage of spanning long repetitive regions (Jain et al., 2018), it is historically prone to higher error rates compared to short-read platforms. In order to remove unnecessary noise, filtlong was applied to remove reads shorter than 1000bp and with a mean quality score below Q10.
+After filtering, the dataset was reduced to 387,807 high-quality reads. While this represented a minor reduction in total read count (<1%), it significantly improved the mean read quality, removing the "noise" floor of fragmented sequences as seen in Figure 1.
+                
+Figure 1: The scatter plot displays read length (x-axis) versus mean quality score (y-axis) before and after filtering. The absence of data points in the lower-left quadrant (<1kb, <Q10) confirms the successful removal of low-quality fragments.
+
+##De Novo Genome Assembly
+The filtered reads were assembled with flye and polished with medaka. The resulting assembly metrics gotten from QUAST indicate a highly contiguous reconstruction of the Salmonella enterica genome. The high N50 value and low contig count confirm that the bacterial chromosome was assembled into a nearly complete, continuous sequence. Visualization of the assembly graph using Bandage revealed that the Salmonella genome was assembled into two distinct components (Figure 2). The primary chromosomal component is characterized by two unique contig loops connected by a central, high-coverage repeat node. This structure indicates a near-complete assembly where a long repetitive element (likely an rRNA operon) remains unresolved. Additionally, a small, circular, extrachromosomal component was identified, representing a plasmid. This structure is a common artifact in bacterial assembly, often caused by rRNA operons (16S/23S) that exceed the read length of the sequencing platform (Wick et al., 2017) Despite this, the connectivity confirms the recovery of the complete chromosomal sequence. Additionally, the identification of a closed, extrachromosomal circular contig suggests the presence of a plasmid, a common feature in Salmonella serovars known to harbor virulence determinants (McClelland et al., 2001)
+
+
 # References
 Cock, P. J. A., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F. and Wilczynski, B. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics, 25(11), 1422.
 
