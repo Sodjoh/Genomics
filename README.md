@@ -44,7 +44,7 @@ After filtering, the dataset was reduced to 387,807 high-quality reads. While th
                 
 Figure 1: The scatter plot displays read length (x-axis) versus mean quality score (y-axis) before and after filtering. The absence of data points in the lower-left quadrant (<1kb, <Q10) confirms the successful removal of low-quality fragments.
 
-##De Novo Genome Assembly
+## De Novo Genome Assembly
 The filtered reads were assembled with flye and polished with medaka. The resulting assembly metrics gotten from QUAST indicate a highly contiguous reconstruction of the Salmonella enterica genome. The high N50 value and low contig count confirm that the bacterial chromosome was assembled into a nearly complete, continuous sequence. Visualization of the assembly graph using Bandage revealed that the Salmonella genome was assembled into two distinct components (Figure 2). The primary chromosomal component is characterized by two unique contig loops connected by a central, high-coverage repeat node. This structure indicates a near-complete assembly where a long repetitive element (likely an rRNA operon) remains unresolved. Additionally, a small, circular, extrachromosomal component was identified, representing a plasmid. This structure is a common artifact in bacterial assembly, often caused by rRNA operons (16S/23S) that exceed the read length of the sequencing platform (Wick et al., 2017) Despite this, the connectivity confirms the recovery of the complete chromosomal sequence. Additionally, the identification of a closed, extrachromosomal circular contig suggests the presence of a plasmid, a common feature in Salmonella serovars known to harbor virulence determinants (McClelland et al., 2001)
 
 
