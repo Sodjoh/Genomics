@@ -9,15 +9,26 @@ This requirement is currently best met by Oxford Nanopore's R10 flow cells, whic
 Despite these advantages, Nanopore sequencing also presents important challenges including sequencing errors particularly in homopolymer regions as well as balancing contiguity and correctness (Wick et al., 2019). These errors can lead to insertions, deletions, or mismatches in the assembled genome if not properly addressed. Consequently, genome assembly using Nanopore data requires specialized algorithms that are robust to noisy reads, as well as post-assembly polishing steps to improve base-level accuracy. These limitations highlight the importance of combining de novo assembly with reference-based analysis to obtain a more complete and accurate representation of the genome.
 ## Method Comparison 
 Generating accurate de novo assemblies from long-read platforms requires appropriate software. The choice of analysis tools is the primary determinant of the final output's quality, influencing everything from the quality, contiguity, and biological accuracy of the resulting genomes. For long-read bacterial genome assembly using Oxford Nanopore Technologies (ONT) data, assemblers such as Flye, Canu, Shasta, and Raven are commonly used (Kolmogorov et al., 2019). In a study conducted by Cosma et al. (2023), Flye was the assembler that scored consistently good in most evaluation categories for assemblies of reads in ONT data. According to a study conducted in 2025 by (Kumar et al., 2025), it was concluded that when maximizing the length of contiguous fragments, tools such as NextDenovo and NECAT are often the top performers. In contrast, Flye is frequently recommended for its ability to strike a balance between computational speed and base-level accuracy. While Canu remains a powerful option for deep, correction-intensive assembly. Unicycler is distinctively noted for its ability to resolve circular chromosomes.
-# Proposed Methods
+# Methodology
 ## Data preprocessing and Quality Assessment
-Raw sequencing reads will be provided in FASTQ format, generated using Oxford Nanopore R10 chemistry with an expected read accuracy of Q20+ and an N50 read length between 5–15 kb. Initial quality assessment will be performed using tools such as NanoPlot (v1.40) to evaluate read length distribution, quality scores, and overall data suitability for assembly (De Coster and Rademakers, 2023). 
+Raw long-read sequencing data for Salmonella enterica was downloaded from NCBI database with accession number SRR32410565.1 The data was extracted using SRA Toolkit (v2.9.6) which converted SRA format into FASTQ sequences. Initial quality assessment was conducted using NanoPlot (v1.4.2) to characterize read length distribution and quality score metrics (De Coster et al., 2023). In order to ensure quality, the raw reads were subjected to filtering using Filtlong (v0.3.1). So reads shorter than 1,000 base pairs (bp) or with a mean quality score below Q10 were discarded to remove truncated fragments and low-accuracy sequences that could introduce graph ambiguities. Afterwards NanoPlot was rerun again on the filtered reads to confirm the differences and validate the removal of noise.
+fasterq-dump SRR32410565.1 --threads 4
+NanoPlot --fastq SRR32410565.1.fastq --outdir qc_check
+Filtering
+filtlong --min_length 1000 --min_mean_q 10 SRR32410565.1.fastq > filtered_reads.fastq
+Nanoplot of filtered reads
+NanoPlot --fastq filtered_reads.fastq --outdir qc_filtered
 ## Genome Assembly
-De novo genome assembly will be carried out using Flye (v2.9.3), a long-read assembler optimized for noisy sequencing data, including Oxford Nanopore reads. Flye employs a repeat graph–based strategy that has been shown to perform well for bacterial genome assembly by resolving repetitive regions and producing highly contiguous assemblies (Wick and Holt, 2021) 
+The filtered reads were assembled using Flye (v2.9.6). The pipeline was executed in --nano-hq mode to leverage the improved accuracy profile of R10 pore chemistry. An expected genome size of 4.8 Mb was specified to guide the coverage estimation and graph resolution parameters (Wick & Holt, 2022).
+flye --nano-hq filtered_reads.fastq --out-dir flye_assembly --genome-size 4.8m --threads 4
 ## Assembly Polishing
-To improve base-level accuracy, the assembled genome will be polished using Medaka, a neural-network–based polishing tool designed specifically for Oxford Nanopore data (Sereika et al., 2022). Polishing will involve re-aligning the original reads to the assembled contigs using Minimap2 (v2.24) and generating a refined consensus sequence.
+Following assembly, the draft genome was polished using Medaka a neural-network–based polishing tool designed specifically for Oxford Nanopore data with the model to correct homopolymer errors and improve base-level accuracy (Sereika et al., 2022). 
 ## Genome Alignment and Variant Calling
-The polished assembly will be aligned to the reference genome using Minimap2 (v2.24), which is optimized for long-read and assembly-to-reference alignments (Jain et al., 2020). Variant calling will be performed using tools such as bcftools to identify SNVs and small indels. Structural variations may be assessed using long-read–aware variant callers if necessary (Danecek et al., 2021).
+The reference genome was downloaded from NCBI and thereafter aligned with the polished assembly using Minimap2 (v 2.24) (Jain et al., 2020). The resulting alignment was sorted and indexed using Samtools (v1.16) for downstream analysis. Structural variants (SVs), including insertions, deletions, and inversions, were detected using SVIM-asm (v1.0.3) in haploid mode.
+minimap2 -ax asm5 reference.fasta medaka_out/consensus.fasta > alignment_polished.sam
+samtools view -bS alignment_polished.sam | samtools sort -o alignment_polished_sorted.bam samtools index alignment_polished_sorted.bam
+svim-asm haploid/home/sodiq-dada alignment_polished_sorted.bam reference.fasta
+
 ## Visualization
 Genome alignments and identified variants will be visualized using IGV (Integrative Genomics Viewer) (v2.18) (Robinson et al., 2023)
 # References
