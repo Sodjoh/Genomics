@@ -41,6 +41,7 @@ Genome alignments and identified variants were visualized using IGV (Integrative
 ## Data Quality and Filtering 
 The raw read “SRR32410565” before subjecting it to filtering had 391,551 reads. Inspection via NanoPlot revealed a variable length distribution typical of raw long-read output. While Nanopore sequencing offers the distinct advantage of spanning long repetitive regions (Jain et al., 2018), it is historically prone to higher error rates compared to short-read platforms. In order to remove unnecessary noise, filtlong was applied to remove reads shorter than 1000bp and with a mean quality score below Q10.
 After filtering, the dataset was reduced to 387,807 high-quality reads. While this represented a minor reduction in total read count (<1%), it significantly improved the mean read quality, removing the "noise" floor of fragmented sequences as seen in Figure 1.
+![image alt](https://github.com/Sodjoh/Genomics/blob/9eee75778a6729c3b085ee0edb21285446073c52/LengthvsQualityScatterPlot_dot.png)
                 
 Figure 1: The scatter plot displays read length (x-axis) versus mean quality score (y-axis) before and after filtering. The absence of data points in the lower-left quadrant (<1kb, <Q10) confirms the successful removal of low-quality fragments.
 
