@@ -41,15 +41,29 @@ Genome alignments and identified variants were visualized using IGV (Integrative
 ## Data Quality and Filtering 
 The raw read “SRR32410565” before subjecting it to filtering had 391,551 reads. Inspection via NanoPlot revealed a variable length distribution typical of raw long-read output. While Nanopore sequencing offers the distinct advantage of spanning long repetitive regions (Jain et al., 2018), it is historically prone to higher error rates compared to short-read platforms. In order to remove unnecessary noise, filtlong was applied to remove reads shorter than 1000bp and with a mean quality score below Q10.
 After filtering, the dataset was reduced to 387,807 high-quality reads. While this represented a minor reduction in total read count (<1%), it significantly improved the mean read quality, removing the "noise" floor of fragmented sequences as seen in Figure 1.
-![image alt](https://github.com/Sodjoh/Genomics/blob/9eee75778a6729c3b085ee0edb21285446073c52/LengthvsQualityScatterPlot_dot.png)
+![image alt](https://github.com/Sodjoh/Genomics/blob/9eee75778a6729c3b085ee0edb21285446073c52/LengthvsQualityScatterPlot_dot.png) 
 ![image_alt](https://github.com/Sodjoh/Genomics/blob/main/LengthvsQualityScatterPlot_dot1.png)
 
-                
 Figure 1: The scatter plot displays read length (x-axis) versus mean quality score (y-axis) before and after filtering. The absence of data points in the lower-left quadrant (<1kb, <Q10) confirms the successful removal of low-quality fragments.A.before filtering B.after filtering
 
 ## De Novo Genome Assembly
-The filtered reads were assembled with flye and polished with medaka. The resulting assembly metrics gotten from QUAST indicate a highly contiguous reconstruction of the Salmonella enterica genome. The high N50 value and low contig count confirm that the bacterial chromosome was assembled into a nearly complete, continuous sequence. Visualization of the assembly graph using Bandage revealed that the Salmonella genome was assembled into two distinct components (Figure 2). The primary chromosomal component is characterized by two unique contig loops connected by a central, high-coverage repeat node. This structure indicates a near-complete assembly where a long repetitive element (likely an rRNA operon) remains unresolved. Additionally, a small, circular, extrachromosomal component was identified, representing a plasmid. This structure is a common artifact in bacterial assembly, often caused by rRNA operons (16S/23S) that exceed the read length of the sequencing platform (Wick et al., 2017) Despite this, the connectivity confirms the recovery of the complete chromosomal sequence. Additionally, the identification of a closed, extrachromosomal circular contig suggests the presence of a plasmid, a common feature in Salmonella serovars known to harbor virulence determinants (McClelland et al., 2001)
+The filtered reads were assembled with flye and polished with medaka. The resulting assembly metrics gotten from QUAST indicate a highly contiguous reconstruction of the Salmonella enterica genome. The high N50 value and low contig count confirm that the bacterial chromosome was assembled into a nearly complete, continuous sequence. Table 1 shows the assembly metric of the Denovo assembly and the reference genome. It could be seen that there is a very close similarity betweeen this two. Visualization of the assembly graph using Bandage revealed that the Salmonella genome was assembled into two distinct components (Figure 2). The primary chromosomal component is characterized by two unique contig loops connected by a central, high-coverage repeat node. This structure indicates a near-complete assembly where a long repetitive element (likely an rRNA operon) remains unresolved. Additionally, a small, circular, extrachromosomal component was identified, representing a plasmid. This structure is a common artifact in bacterial assembly, often caused by rRNA operons (16S/23S) that exceed the read length of the sequencing platform (Wick et al., 2017) Despite this, the connectivity confirms the recovery of the complete chromosomal sequence. Additionally, the identification of a closed, extrachromosomal circular contig suggests the presence of a plasmid, a common feature in Salmonella serovars known to harbor virulence determinants (McClelland et al., 2001)
+Table 1: Assembly metrics using QUAST
+| DenovoAssembly | Consensus |
+| :---| ---: |
+|Total length |	5104808 |
+| No of contigs |	3 |
+| N50 |	3318770 |
+| GC content	| 52.19 |
+| L50 |	1 |
 
+| Reference Genome | Consensus |
+| :---| ---: |
+|Total length |4951383 |
+| No of contigs |	2 |	
+| N50 |	4857450 |
+| GC content	| 52.24 |
+| L50 |	1 |
 
 # References
 Cock, P. J. A., Antao, T., Chang, J. T., Chapman, B. A., Cox, C. J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F. and Wilczynski, B. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics, 25(11), 1422.
