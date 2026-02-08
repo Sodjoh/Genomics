@@ -78,10 +78,8 @@ Figure 4: Distribution of structural variants by type and genomic impact.
 
 ![image_alt](https://github.com/Sodjoh/Genomics/blob/c1a3034a70ab99297e6b134836f2a40c1f3f366a/Screenshot%202026-02-07%20231916.png)
 In table 2, a 256 bp deletion was found in dgoR, a transcriptional repressor for galactonate metabolism. In Salmonella, the inactivation of dgoR leads to the constitutive expression of the galactose pathway. This "metabolic erosion" is a known adaptation strategy in host-adapted strains, where the derepression of specific carbon pathways confers a competitive advantage in the nutrient-limited environment of the macrophage (Han et al., 2025; Wang et al., 2021). The dataset shows consistent deletions of tnpA genes each around 711 bp in size. The precise excision of these Insertion Sequences (IS elements) suggests a process of genome stabilization. By shedding active transposases, the isolate may be reducing the risk of deleterious rearrangements, a phenomenon described as "genome degradation" which often accompanies long-term host adaptation(Byl & Kropinski, 2000) 
-
-#Conclusion
+# Conclusion
 To conclude, this study verifies that the sequenced genome represents a unique lineage of Salmonella enterica, distinguished by substantial genomic expansions compared to the reference. This analysis emphasize that de novo, reference-independent assembly is vital for mapping the "accessory genome," which often drives the evolution and pathogenicity of bacterial clusters.
-
 # References
 Byl, C. V., & Kropinski, A. M. (2000). Sequence of the genome of Salmonella bacteriophage P22. Journal of bacteriology, 182(22), 6472-6481. 
 
